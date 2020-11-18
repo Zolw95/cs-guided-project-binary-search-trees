@@ -24,6 +24,33 @@ class BinaryTreeNode:
         self.left = left
         self.right = right
 
-def maxDepth(self, root):
+def maxDepth(root):
     # Your code here
+    # UPER
+    # If root is a leaf, max depth is 1
 
+    
+    # Plan
+    # Base case: if root is None, return 0
+    if root is None:
+        return 0
+    # Base case = if there's no left or right, return 1
+    if root.left is None and root.right is None:
+        return 1
+    # If we have left or right child:
+    # Get max depth of left child
+    left_depth = maxDepth(root.left)
+    # Get the max depth of the right child
+    right_depth = maxDepth(root.right)
+    # add 1 to whichever is greater
+    max_depth = 1 + max(left_depth, right_depth)
+    # return the result
+    return max_depth
+
+root = BinaryTreeNode(value=5,
+                    left=BinaryTreeNode(value=12, left=None, right=None),
+                    right=BinaryTreeNode(value=32,
+                    left=BinaryTreeNode(value=0, left=None, right=None),
+                    right=BinaryTreeNode(value=4, left=None, right=None)))
+
+print(maxDepth(root))
